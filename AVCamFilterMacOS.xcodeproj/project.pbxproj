@@ -1,0 +1,370 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FCA70130237F181900286B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7012F237F181900286B40 /* AppDelegate.swift */; };
+		FCA70134237F181B00286B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA70133237F181B00286B40 /* Assets.xcassets */; };
+		FCA70137237F181B00286B40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA70136237F181B00286B40 /* Preview Assets.xcassets */; };
+		FCA7013A237F181B00286B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA70138237F181B00286B40 /* Main.storyboard */; };
+		FCA70143237F185D00286B40 /* PreviewMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70142237F185D00286B40 /* PreviewMetalView.swift */; };
+		FCA70145237F187100286B40 /* RosyMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70144237F187100286B40 /* RosyMetalRenderer.swift */; };
+		FCA70147237F187800286B40 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70146237F187800286B40 /* CameraViewController.swift */; };
+		FCA7014A237F188300286B40 /* RosyEffect.metal in Sources */ = {isa = PBXBuildFile; fileRef = FCA70148237F188300286B40 /* RosyEffect.metal */; };
+		FCA7014B237F188300286B40 /* PassThrough.metal in Sources */ = {isa = PBXBuildFile; fileRef = FCA70149237F188300286B40 /* PassThrough.metal */; };
+		FCA7014D237F192200286B40 /* FilterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7014C237F192100286B40 /* FilterRenderer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FCA7012C237F181900286B40 /* AVCamFilterMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVCamFilterMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCA7012F237F181900286B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FCA70133237F181B00286B40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FCA70136237F181B00286B40 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FCA70139237F181B00286B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FCA7013B237F181B00286B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCA7013C237F181B00286B40 /* AVCamFilterMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AVCamFilterMacOS.entitlements; sourceTree = "<group>"; };
+		FCA70142237F185D00286B40 /* PreviewMetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMetalView.swift; sourceTree = "<group>"; };
+		FCA70144237F187100286B40 /* RosyMetalRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RosyMetalRenderer.swift; sourceTree = "<group>"; };
+		FCA70146237F187800286B40 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		FCA70148237F188300286B40 /* RosyEffect.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = RosyEffect.metal; sourceTree = "<group>"; };
+		FCA70149237F188300286B40 /* PassThrough.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PassThrough.metal; sourceTree = "<group>"; };
+		FCA7014C237F192100286B40 /* FilterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRenderer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FCA70129237F181900286B40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FCA70123237F181900286B40 = {
+			isa = PBXGroup;
+			children = (
+				FCA7012E237F181900286B40 /* AVCamFilterMacOS */,
+				FCA7012D237F181900286B40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FCA7012D237F181900286B40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCA7012C237F181900286B40 /* AVCamFilterMacOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FCA7012E237F181900286B40 /* AVCamFilterMacOS */ = {
+			isa = PBXGroup;
+			children = (
+				FCA7012F237F181900286B40 /* AppDelegate.swift */,
+				FCA70144237F187100286B40 /* RosyMetalRenderer.swift */,
+				FCA70149237F188300286B40 /* PassThrough.metal */,
+				FCA70148237F188300286B40 /* RosyEffect.metal */,
+				FCA70146237F187800286B40 /* CameraViewController.swift */,
+				FCA7014C237F192100286B40 /* FilterRenderer.swift */,
+				FCA70142237F185D00286B40 /* PreviewMetalView.swift */,
+				FCA70133237F181B00286B40 /* Assets.xcassets */,
+				FCA70138237F181B00286B40 /* Main.storyboard */,
+				FCA7013B237F181B00286B40 /* Info.plist */,
+				FCA7013C237F181B00286B40 /* AVCamFilterMacOS.entitlements */,
+				FCA70135237F181B00286B40 /* Preview Content */,
+			);
+			path = AVCamFilterMacOS;
+			sourceTree = "<group>";
+		};
+		FCA70135237F181B00286B40 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FCA70136237F181B00286B40 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FCA7012B237F181900286B40 /* AVCamFilterMacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCA7013F237F181B00286B40 /* Build configuration list for PBXNativeTarget "AVCamFilterMacOS" */;
+			buildPhases = (
+				FCA70128237F181900286B40 /* Sources */,
+				FCA70129237F181900286B40 /* Frameworks */,
+				FCA7012A237F181900286B40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AVCamFilterMacOS;
+			productName = AVCamFilterMacOS;
+			productReference = FCA7012C237F181900286B40 /* AVCamFilterMacOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FCA70124237F181900286B40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Jake Van Alstyne";
+				TargetAttributes = {
+					FCA7012B237F181900286B40 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+				};
+			};
+			buildConfigurationList = FCA70127237F181900286B40 /* Build configuration list for PBXProject "AVCamFilterMacOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FCA70123237F181900286B40;
+			productRefGroup = FCA7012D237F181900286B40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FCA7012B237F181900286B40 /* AVCamFilterMacOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FCA7012A237F181900286B40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA7013A237F181B00286B40 /* Main.storyboard in Resources */,
+				FCA70137237F181B00286B40 /* Preview Assets.xcassets in Resources */,
+				FCA70134237F181B00286B40 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FCA70128237F181900286B40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCA70143237F185D00286B40 /* PreviewMetalView.swift in Sources */,
+				FCA7014B237F188300286B40 /* PassThrough.metal in Sources */,
+				FCA70147237F187800286B40 /* CameraViewController.swift in Sources */,
+				FCA70145237F187100286B40 /* RosyMetalRenderer.swift in Sources */,
+				FCA7014D237F192200286B40 /* FilterRenderer.swift in Sources */,
+				FCA7014A237F188300286B40 /* RosyEffect.metal in Sources */,
+				FCA70130237F181900286B40 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FCA70138237F181B00286B40 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCA70139237F181B00286B40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FCA7013D237F181B00286B40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FCA7013E237F181B00286B40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		FCA70140237F181B00286B40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AVCamFilterMacOS/AVCamFilterMacOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"AVCamFilterMacOS/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AVCamFilterMacOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = .AVCamFilterMacOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FCA70141237F181B00286B40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AVCamFilterMacOS/AVCamFilterMacOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"AVCamFilterMacOS/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = AVCamFilterMacOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = .AVCamFilterMacOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FCA70127237F181900286B40 /* Build configuration list for PBXProject "AVCamFilterMacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA7013D237F181B00286B40 /* Debug */,
+				FCA7013E237F181B00286B40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCA7013F237F181B00286B40 /* Build configuration list for PBXNativeTarget "AVCamFilterMacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA70140237F181B00286B40 /* Debug */,
+				FCA70141237F181B00286B40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FCA70124237F181900286B40 /* Project object */;
+}
