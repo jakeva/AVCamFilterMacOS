@@ -27,7 +27,7 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
 
   private var setupResult: SessionSetupResult = .success
     // MARK: - View Controller Life Cycle
-    
+
     override func viewDidLoad() {
       switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -56,7 +56,7 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
         self.configureSession()
       }
     }
-    
+
     override func viewWillAppear() {
       super.viewWillAppear()
 
@@ -76,7 +76,7 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
         }
       }
     }
-    
+
     override func viewWillDisappear() {
         dataOutputQueue.async {
             self.renderingEnabled = false
@@ -88,9 +88,9 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
             }
         }
     }
-    
+
     // MARK: - Session Management
-    
+
     // Call this on the SessionQueue
     private func configureSession() {
       if setupResult != .success {
@@ -148,13 +148,13 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
 
       captureSession.commitConfiguration()
     }
-    
+
     // MARK: - Video Data Output Delegate
-    
+
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         processVideo(sampleBuffer: sampleBuffer)
     }
-    
+
   func processVideo(sampleBuffer: CMSampleBuffer) {
     if !renderingEnabled {
       return
@@ -165,24 +165,20 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
         return
     }
 
-    var finalVideoPixelBuffer = videoPixelBuffer
-
-    if !videoFilter.isPrepared {
+    if !self.videoFilter.isPrepared {
       /*
        outputRetainedBufferCountHint is the number of pixel buffers the renderer retains. This value informs the renderer
        how to size its buffer pool and how many pixel buffers to preallocate. Allow 3 frames of latency to cover the dispatch_async call.
        */
-      videoFilter.prepare(with: formatDescription, outputRetainedBufferCountHint: 3)
+      self.videoFilter.prepare(with: formatDescription, outputRetainedBufferCountHint: 3)
     }
 
     // Send the pixel buffer through the filter
-    guard let filteredBuffer = videoFilter.render(pixelBuffer: finalVideoPixelBuffer) else {
+    guard let filteredBuffer = self.videoFilter.render(pixelBuffer: videoPixelBuffer) else {
       print("Unable to filter video buffer")
       return
     }
 
-    finalVideoPixelBuffer = filteredBuffer
-
-    previewView.pixelBuffer = finalVideoPixelBuffer
+    self.previewView.pixelBuffer = filteredBuffer
   }
 }

@@ -21,4 +21,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     windowController.showWindow(self)
   }
 }
-
