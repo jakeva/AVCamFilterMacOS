@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23D638D423AD8162003078FE /* MotionDetect.metal in Sources */ = {isa = PBXBuildFile; fileRef = 23D638D323AD8162003078FE /* MotionDetect.metal */; };
 		FCA70130237F181900286B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7012F237F181900286B40 /* AppDelegate.swift */; };
 		FCA70134237F181B00286B40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA70133237F181B00286B40 /* Assets.xcassets */; };
 		FCA70137237F181B00286B40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA70136237F181B00286B40 /* Preview Assets.xcassets */; };
 		FCA7013A237F181B00286B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA70138237F181B00286B40 /* Main.storyboard */; };
 		FCA70143237F185D00286B40 /* PreviewMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70142237F185D00286B40 /* PreviewMetalView.swift */; };
-		FCA70145237F187100286B40 /* RosyMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70144237F187100286B40 /* RosyMetalRenderer.swift */; };
+		FCA70145237F187100286B40 /* MotionDetectMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70144237F187100286B40 /* MotionDetectMetalRenderer.swift */; };
 		FCA70147237F187800286B40 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA70146237F187800286B40 /* CameraViewController.swift */; };
-		FCA7014A237F188300286B40 /* RosyEffect.metal in Sources */ = {isa = PBXBuildFile; fileRef = FCA70148237F188300286B40 /* RosyEffect.metal */; };
 		FCA7014B237F188300286B40 /* PassThrough.metal in Sources */ = {isa = PBXBuildFile; fileRef = FCA70149237F188300286B40 /* PassThrough.metal */; };
 		FCA7014D237F192200286B40 /* FilterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7014C237F192100286B40 /* FilterRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23D638D323AD8162003078FE /* MotionDetect.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = MotionDetect.metal; sourceTree = "<group>"; };
 		FCA7012C237F181900286B40 /* AVCamFilterMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVCamFilterMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA7012F237F181900286B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCA70133237F181B00286B40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,9 +29,8 @@
 		FCA7013B237F181B00286B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCA7013C237F181B00286B40 /* AVCamFilterMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AVCamFilterMacOS.entitlements; sourceTree = "<group>"; };
 		FCA70142237F185D00286B40 /* PreviewMetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMetalView.swift; sourceTree = "<group>"; };
-		FCA70144237F187100286B40 /* RosyMetalRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RosyMetalRenderer.swift; sourceTree = "<group>"; };
+		FCA70144237F187100286B40 /* MotionDetectMetalRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionDetectMetalRenderer.swift; sourceTree = "<group>"; };
 		FCA70146237F187800286B40 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		FCA70148237F188300286B40 /* RosyEffect.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = RosyEffect.metal; sourceTree = "<group>"; };
 		FCA70149237F188300286B40 /* PassThrough.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PassThrough.metal; sourceTree = "<group>"; };
 		FCA7014C237F192100286B40 /* FilterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,9 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				FCA7012F237F181900286B40 /* AppDelegate.swift */,
-				FCA70144237F187100286B40 /* RosyMetalRenderer.swift */,
+				FCA70144237F187100286B40 /* MotionDetectMetalRenderer.swift */,
+				23D638D323AD8162003078FE /* MotionDetect.metal */,
 				FCA70149237F188300286B40 /* PassThrough.metal */,
-				FCA70148237F188300286B40 /* RosyEffect.metal */,
 				FCA70146237F187800286B40 /* CameraViewController.swift */,
 				FCA7014C237F192100286B40 /* FilterRenderer.swift */,
 				FCA70142237F185D00286B40 /* PreviewMetalView.swift */,
@@ -162,10 +162,10 @@
 			files = (
 				FCA70143237F185D00286B40 /* PreviewMetalView.swift in Sources */,
 				FCA7014B237F188300286B40 /* PassThrough.metal in Sources */,
+				23D638D423AD8162003078FE /* MotionDetect.metal in Sources */,
 				FCA70147237F187800286B40 /* CameraViewController.swift in Sources */,
-				FCA70145237F187100286B40 /* RosyMetalRenderer.swift in Sources */,
+				FCA70145237F187100286B40 /* MotionDetectMetalRenderer.swift in Sources */,
 				FCA7014D237F192200286B40 /* FilterRenderer.swift in Sources */,
-				FCA7014A237F188300286B40 /* RosyEffect.metal in Sources */,
 				FCA70130237F181900286B40 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
