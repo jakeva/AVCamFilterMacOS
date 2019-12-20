@@ -28,9 +28,9 @@ kernel void motionDetect(texture2d<half, access::read>  lastTexture  [[ texture(
                            currentInputColor.b - lastInputColor.b,
                            1.0);
   float deltaDotP = dot(difference, difference);
-  float red = deltaDotP;
+  float red = 5.0 * (deltaDotP - 1.0);
 
-  half4 outputColor =  deltaDotP > 1.0 ? half4(red, 0.0, 0.0, 1.0) : lastInputColor;
+  half4 outputColor =  deltaDotP > 1.02 ? half4(red, 0.0, 0.0, 1.0) : lastInputColor;
 
   outputTexture.write(outputColor, gid);
 }
