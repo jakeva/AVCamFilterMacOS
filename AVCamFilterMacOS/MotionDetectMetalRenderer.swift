@@ -1,13 +1,14 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-The motion-detect filter renderer, implemented with Metal.
-*/
+ Abstract:
+ The motion-detect filter renderer, implemented with Metal.
+ */
 
 import CoreMedia
 import CoreVideo
 import Metal
+import MetalPerformanceShaders
 
 class MotionDetectMetalRenderer: FilterRenderer {
   var description: String = "Motion Detect"
@@ -18,6 +19,8 @@ class MotionDetectMetalRenderer: FilterRenderer {
   private let metalDevice = MTLCreateSystemDefaultDevice()!
   private var computePipelineState: MTLComputePipelineState?
   private var textureCache: CVMetalTextureCache!
+//  private let detectionQueue = DispatchQueue(label: "DetectionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
+  
 
   private lazy var commandQueue: MTLCommandQueue? = {
     return self.metalDevice.makeCommandQueue()
@@ -82,17 +85,41 @@ class MotionDetectMetalRenderer: FilterRenderer {
 
     // Set up command queue, buffer, and encoder.
     guard let commandQueue = commandQueue,
-      let commandBuffer = commandQueue.makeCommandBuffer(),
-      let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
+      let commandBuffer = commandQueue.makeCommandBuffer() else {
         print("Failed to create a Metal command queue.")
         CVMetalTextureCacheFlush(textureCache!, 0)
         return nil
     }
 
-    commandEncoder.label = "Rosy Metal"
+    var newCurrentSmoothedPixelBuffer: CVPixelBuffer?
+    var newPreviousSmoothedPixelBuffer: CVPixelBuffer?
+    CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, outputPixelBufferPool!, &newCurrentSmoothedPixelBuffer)
+    CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, outputPixelBufferPool!, &newPreviousSmoothedPixelBuffer)
+    guard let currentSmoothedPixelBuffer = newCurrentSmoothedPixelBuffer,
+      let previousSmoothedPixelBuffer = newPreviousSmoothedPixelBuffer else {
+      print("Allocation failure: Could not get pixel buffer from pool. (\(self.description))")
+      return nil
+    }
+
+    guard let currentSmoothedFrameTexture = makeTextureFromCVPixelBuffer(pixelBuffer: currentSmoothedPixelBuffer, textureFormat: .bgra8Unorm),
+      let lastSmoothedFrameTexture = makeTextureFromCVPixelBuffer(pixelBuffer: previousSmoothedPixelBuffer, textureFormat: .bgra8Unorm) else {
+        return nil
+    }
+
+    let gaussianBlur = MPSImageGaussianBlur.init(device: self.metalDevice, sigma: 1.5)
+    gaussianBlur.encode(commandBuffer: commandBuffer, sourceTexture: lastFrameTexture, destinationTexture: lastSmoothedFrameTexture)
+    gaussianBlur.encode(commandBuffer: commandBuffer, sourceTexture: currentFrameTexture, destinationTexture: currentSmoothedFrameTexture)
+
+    guard let commandEncoder = commandBuffer.makeComputeCommandEncoder() else {
+           print("Failed to create a Metal command encoder.")
+           CVMetalTextureCacheFlush(textureCache!, 0)
+           return nil
+       }
+
+    commandEncoder.label = "Motion Detect Metal"
     commandEncoder.setComputePipelineState(computePipelineState!)
-    commandEncoder.setTexture(lastFrameTexture, index: 0)
-    commandEncoder.setTexture(currentFrameTexture, index: 1)
+    commandEncoder.setTexture(lastSmoothedFrameTexture, index: 0)
+    commandEncoder.setTexture(currentSmoothedFrameTexture, index: 1)
     commandEncoder.setTexture(outputTexture, index: 2)
 
     // Set up the thread groups.
@@ -106,6 +133,7 @@ class MotionDetectMetalRenderer: FilterRenderer {
 
     commandEncoder.endEncoding()
     commandBuffer.commit()
+
     return outputPixelBuffer
   }
 

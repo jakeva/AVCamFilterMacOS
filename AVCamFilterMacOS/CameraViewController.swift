@@ -16,10 +16,12 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
   private var videoFilter = MotionDetectMetalRenderer()
   private let sessionQueue = DispatchQueue(label: "SessionQueue", attributes: [], autoreleaseFrequency: .workItem)
   private let dataOutputQueue = DispatchQueue(label: "VideoDataQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
+  private let detectionQueue = DispatchQueue(label: "DetectionQueue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
   private var renderingEnabled = true
   private var isSessionRunning = false
   private var lastSampleBuffer: CMSampleBuffer!
   private var currentSampleBuffer: CMSampleBuffer!
+  private var filteredBuffers: [CVPixelBuffer] = []
 
   private enum SessionSetupResult {
     case success
@@ -163,6 +165,14 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
     processVideo(lastSampleBuffer: self.lastSampleBuffer, currentSampleBuffer: self.currentSampleBuffer)
   }
 
+  // Maybe compare against first frame only?
+//  if self.lastSampleBuffer == nil {
+//      self.lastSampleBuffer = sampleBuffer
+//    }
+//    self.currentSampleBuffer = sampleBuffer
+//    processVideo(lastSampleBuffer: self.lastSampleBuffer, currentSampleBuffer: self.currentSampleBuffer)
+//  }
+
   func processVideo(lastSampleBuffer: CMSampleBuffer, currentSampleBuffer: CMSampleBuffer) {
     if !renderingEnabled {
       return
@@ -188,6 +198,53 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
       return
     }
 
+    detectionQueue.async {
+      self.filteredBuffers.append(filteredBuffer)
+      let index = self.filteredBuffers.firstIndex(of: filteredBuffer)
+      CVPixelBufferLockBaseAddress(filteredBuffer, [])
+//      if self.motionDetected(pixelBuffer: filteredBuffer) {
+//        print("Motion DETECTED")
+//      }
+      self.filteredBuffers.remove(at: index!)
+      CVPixelBufferUnlockBaseAddress(filteredBuffer, [])
+    }
+
     self.previewView.pixelBuffer = filteredBuffer
+  }
+
+  func motionDetected(pixelBuffer: CVPixelBuffer) -> Bool {
+    let width = CVPixelBufferGetWidth(pixelBuffer)
+    let height = CVPixelBufferGetHeight(pixelBuffer)
+
+    let threshold = 10
+    var count = 0
+
+    outerLoop: for y in 0...height-1 {
+      for x in 0...width-1 {
+        let (r, g, b) = pixelFrom(x: x, y: y, pixelBuffer: pixelBuffer)
+        if r > 0 {
+          count += 1
+          if count > threshold {
+            print("Motion Detected")
+            break outerLoop
+          }
+        }
+      }
+    }
+
+    return false
+  }
+
+  func pixelFrom(x: Int, y: Int, pixelBuffer: CVPixelBuffer) -> (UInt8, UInt8, UInt8) {
+      let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer)
+      let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+      let buffer = baseAddress!.assumingMemoryBound(to: UInt8.self)
+
+      let index = x*4 + y*bytesPerRow
+      let b = buffer[index]
+      let g = buffer[index+1]
+      let r = buffer[index+2]
+
+      return (r, g, b)
   }
 }

@@ -20,6 +20,11 @@ kernel void motionDetect(texture2d<half, access::read>  lastTexture  [[ texture(
     return;
   }
 
+//  const uint2 pixellatedGid = uint2((gid.x / 50) * 50, (gid.y / 50) * 50);
+//
+//  half4 lastInputColor = lastTexture.read(pixellatedGid);
+//  half4 currentInputColor = currentTexture.read(pixellatedGid);
+
   half4 lastInputColor = lastTexture.read(gid);
   half4 currentInputColor = currentTexture.read(gid);
 
@@ -28,9 +33,9 @@ kernel void motionDetect(texture2d<half, access::read>  lastTexture  [[ texture(
                            currentInputColor.b - lastInputColor.b,
                            1.0);
   float deltaDotP = dot(difference, difference);
-  float red = 5.0 * (deltaDotP - 1.0);
+  float red = 1.5 * (deltaDotP - 1.0);
 
-  half4 outputColor =  deltaDotP > 1.02 ? half4(red, 0.0, 0.0, 1.0) : lastInputColor;
+  half4 outputColor =  deltaDotP > 1.2 ? half4(red, 0.0, 0.0, 1.0) : lastInputColor;
 
   outputTexture.write(outputColor, gid);
 }
