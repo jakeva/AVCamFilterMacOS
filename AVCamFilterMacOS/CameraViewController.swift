@@ -202,9 +202,9 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
       self.filteredBuffers.append(filteredBuffer)
       let index = self.filteredBuffers.firstIndex(of: filteredBuffer)
       CVPixelBufferLockBaseAddress(filteredBuffer, [])
-//      if self.motionDetected(pixelBuffer: filteredBuffer) {
-//        print("Motion DETECTED")
-//      }
+      if self.motionDetected(pixelBuffer: filteredBuffer) {
+        print("Motion DETECTED")
+      }
       self.filteredBuffers.remove(at: index!)
       CVPixelBufferUnlockBaseAddress(filteredBuffer, [])
     }
@@ -216,23 +216,26 @@ class CameraViewController: NSViewController, AVCaptureVideoDataOutputSampleBuff
     let width = CVPixelBufferGetWidth(pixelBuffer)
     let height = CVPixelBufferGetHeight(pixelBuffer)
 
-    let threshold = 10
+    let threshold = 100
     var count = 0
 
-    outerLoop: for y in 0...height-1 {
-      for x in 0...width-1 {
+    var motion_detected = false
+
+    outerLoop: for y in stride(from: 0, to: height-1, by: 2) {
+      for x in stride(from: 0, to: width-1, by: 2) {
         let (r, g, b) = pixelFrom(x: x, y: y, pixelBuffer: pixelBuffer)
-        if r > 0 {
+        if g == 0 && b == 0 && r > 0 {
           count += 1
           if count > threshold {
-            print("Motion Detected")
+            print((r, g, b))
+            motion_detected = true
             break outerLoop
           }
         }
       }
     }
 
-    return false
+    return motion_detected
   }
 
   func pixelFrom(x: Int, y: Int, pixelBuffer: CVPixelBuffer) -> (UInt8, UInt8, UInt8) {
